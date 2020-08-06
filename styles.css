@@ -1,0 +1,318 @@
+/* base styling */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  min-height: 100%;
+  font-family: arial;
+  background: #eee;
+}
+
+h1,h2,h3,h4,h5 {
+  margin-top: 0;
+}
+
+p {
+  font-size: 15px;
+  font-weight: 1;
+}
+
+.page-header {
+  display: flex;
+}
+
+.page-header #main-nav {
+  flex-grow: 1;
+}
+
+.page-content {
+  transition: all 0.3s ease;
+  position: relative;
+  top: 0;
+}
+
+.page-content.hidden {
+  top: -20%;
+  opacity: 0;
+}
+
+#app {
+  width: 100%;
+  min-height: 100%;
+  position: absolute;
+  transition: all 0.3s ease;
+  top: 0;
+}
+
+.page {
+  padding: 2em;
+}
+
+#app.hidden {
+  opacity: 0;
+  top: -10%;
+}
+
+/* main nav */
+#main-nav {
+  margin-bottom: 2em;
+}
+
+#main-nav a {
+  text-decoration: none;
+  padding: 0.4em 1em;
+  text-transform: uppercase;
+  color: #333;
+}
+
+#main-nav a.active {
+  font-weight: bold;
+  background: #333;
+  color: #fff;
+  border-radius: 4px;
+}
+
+#items-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* user nav */
+#user-nav {
+  display: flex;
+}
+
+#user-nav a {
+  text-decoration: none;
+  padding: 0.4em 1em;
+  text-transform: uppercase;
+  color: #333;
+}
+/* book entry */
+.item-entry {  
+  width: 25%;
+  display: flex;
+  align-items: flex-start;
+  background: #fff;  
+  box-shadow: 0px 10px 20px rgba(0,0,0, 0.1);
+  border-radius: 4px;
+  padding: 1.1em;  
+  transform: scale(0.9);
+  transition: all 0.3s ease;
+}
+
+.item-entry .content {
+  flex-grow: 1;
+}
+
+.item-entry h3 {
+  font-size: 0.8em;
+  margin: 0 0 0.5em;
+}
+
+.item-entry  .view-item-btn
+{
+  width:60%;
+}
+
+.item-entry .item-photo {
+  width: 30%;
+  min-width: 70px;
+  height: auto;
+}
+
+.item-entry .fav-icon {
+  color: red;
+  position: absolute;
+  right: 10px;
+  top: -17px;
+  font-size: 30px;
+  display: none;
+}
+
+.item-entry:hover {
+  transform: scale(1.01);
+}
+
+.item-entry.is-favourite .fav-icon {
+  display: block;
+}
+
+/* book modal */
+.item-modal {
+  display: flex;
+  align-items: flex-start;
+}
+
+.item-modal .content {
+  flex-grow: 1;
+}
+
+.item-modal .title {
+  font-size: 2.2em;
+  margin: 0 0 0.5em;
+}
+
+.item-modal .author {
+  font-size: 1.4em;
+  margin-bottom: 0.5em;  
+  color: #999;
+}
+
+.item-modal .item-photo {
+  width: 30%;
+}
+
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;    
+  overflow: scroll;
+  background: #fff;    
+  border-radius: 20px;
+  box-shadow: 0px 10px 30px rgba(0,0,0,0.1);
+}
+
+.modal-content {
+  padding: 2em;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  text-align: center;
+  background: #eee;
+  border-radius: 50%;
+  border: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  outline: none;
+}
+
+.modal-close-btn:hover {
+  background: cyan;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0,0,0,0.3);
+}
+
+#user-favourites-menu {
+  padding-right: 10px;
+  position: relative;
+}
+
+#user-favourites-menu span {
+  display: inline-block;
+  background: red;
+  color: #fff;
+  font-size: 10px;
+  width: 18px;
+  height: 18px;
+  padding-top: 2px;
+  text-align: center;
+  border-radius: 50%;
+  position: absolute;
+  top: 0px;
+}
+
+.loading {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background: red;
+  animation: pulse 1s infinite;
+  border-radius: 50%;
+  margin: 20px auto;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+  }
+}
+
+#notifications {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  width: 300px;  
+}
+
+.notification-entry {
+  padding: 1em;
+  text-align: center;
+  background: #fff;
+  box-shadow: 0px 10px 30px rgba(0,0,0,0.1);
+  border-radius: 200px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+
+
+/* button */
+.button {
+  display: inline-block;
+  padding: 0.4em 1em;
+  border-radius: 4px;
+  background: #444;
+  color: #fff;
+  border: none;
+  font-size: 0.5em;
+  transition: all 0.2s ease;
+}
+
+.button:hover {
+  background: #000;
+  transform: scale(1.05);
+}
+
+/* filer buttons */
+.filter-btn {
+  background: #999;
+  font-size: 0.8em;
+  margin-right: 5px;
+}
+
+.filter-btn.is-active {
+  background: #333;
+}
+
+/* fav count */
+#favs-count {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 12px;
+  padding-top: 3px;
+  position: relative;
+  top: -2px;
+  margin-left: 5px;
+}

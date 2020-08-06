@@ -1,0 +1,17 @@
+{
+  "name": "wad_a3_jessbrown",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "animejs": "^3.2.0",
+    "mustache": "^4.0.1",
+    "sass": "^1.26.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build:css": "node-sass scss/master.scss master.css -w --output-style compressed"
+  },
+  "author": "Jess Brown",
+  "license": "ISC"
+}

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title> Armoire </title>
+    <link rel="stylesheet" href="master.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link rel="stylesheet" href="https://use.typekit.net/cke0ovv.css">
+</head>
+<body>
+    <div id="app"></div>
+    <script src='node_modules/mustache/mustache.min.js'></script>
+    <script src='index.js' type="module"></script>
+
+
+
+<!-- Home page template -->
+    <script type="text/template" id="template-page-home">
+        <div class="page page-home">
+            <header class="page-header">
+                <nav id="main-nav"></nav>
+            </header>
+            <main class="page-content">
+                <img src="/assets/welcome.png" class="welcome" alt="Welcome to Armoire">
+                <div class="welcome-description">
+                    <p> {{ description }} </p>
+                </div>
+                <div class="open-armoire-link-div">
+                <a href="#armoire" class="open-armoire-link"> Open My Armoire 
+                    <span class="arrow-circle">
+                        <i class="fas fa-arrow-right"></i>
+                    </span>
+                </a>
+            </div>
+            </main>
+            <div>
+                <img class="armoire-graphic-full" src="/assets/armoirefull.png" alt="Armoire graphic">
+            </div>
+            <footer class="page-footer">
+                <p> Armoire 2020 <br>
+                    Designed and Developed by Jess Brown
+                </p>  
+            </footer>
+        </div>
+    </script>
+
+    <!-- Armoire page template -->
+    <script type="text/template" id="template-page-armoire">
+         <div class="page page-armoire">
+            <img class="armoire-graphic" src="/assets/armoire.png" alt="Armoire graphic">
+            <header class="page-header">
+                <nav id="main-nav"></nav>
+            </header>
+            <main class="page-content page-content-armoire ">
+                <div class="color-filter-div field columns">
+                    <div class="empty column is-two-thirds">
+                    </div>
+                    <div class="add-item-div column">
+                        <button class="my-button add-item-btn"> Add Item </button>
+                    </div>
+                </div>
+
+                <div class="armoire-div field is-horizontal columns" >
+                    <div class="item-list-categories-div column is-one-quarter">
+                        <div id ='items-list-categories'>
+                            <div id="favs-filter-div">
+                            <button class="filter-btn-favs" id="filter-btn-favourites"> Favourites</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-list-div column">
+                        <div id ='items-list'>
+        
+                        </div>
+
+                        <div class="hidden" >
+                    
+                            <form action="" method="post" id="add-item-form">
+                                <div class= "field columns">
+                                <div class= "column">
+                                    <div class="add-image-div">
+                                        <input class="input is-rounded image-input my-input" type="input" placeholder ="Upload image link" name= "image">
+                                    </div>
+                                </div>
+                                
+                                <div class= "column is-two-thirds">
+                                    <h1 id="add-item-title">Add Item</h1>
+                                <div class="field is-horizontal">
+                                    <div class="field-body">
+                                      <div class="field">
+                                          <input class="input input-is-small input is-rounded my-input" type="input" placeholder="Clothing Item Name" name="name">
+                                          
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                        <textarea class = "input text-area my-text-area my-input" rows="5" name="description" placeholder="Description"></textarea>
+                                  </div>
+                                  
+                                  <div class="field is-horizontal columns buttons">
+                                    <div class="is-rounded column is-one-quarter my-select">
+                                        <label for="category" id="my-label">Category:</label>
+                                        <select name = "category" id="category">
+                                          <option value = "{{Tops}}"> Tops</option>
+                                          <option value = "{{Bottoms}}">Bottoms</option>
+                                          <option value = "{{Dresses}}">Dresses</option>
+                                        </select>
+                                      </div>
+
+                                    <div class="column has-text-right" id="submit-button-div">
+                                        <input type="submit" value="SUBMIT" class="my-button" id="submit-button-add-item">
+                                    </div>
+        
+                                </div>
+                            </div>
+                                
+                            </form>
+                        </div>
+                    
+
+
+
+                    </div>
+                </div>
+            </main>
+            <footer class="page-footer">
+                <p> Armoire 2020 <br>
+                    Designed and Developed by Jess Brown
+                </p>  
+            </footer>
+        </div>
+    </script>
+
+    <!----- Create Account page template -------------------->
+<script type="text/template" id="template-page-create-account">
+    <div class ="page create-account">
+        <header class="page-header">
+            <div class="create-account-header">
+            <img src="/assets/logo.png" class= "armoire-logo-nav">
+            </div>
+            </header>
+            <main class="page-content">
+                <div class="create-account-div field  is-horizontal columns">
+                <div class = "avatar-create-account-div column">
+                    <img src="/assets/avatar.png" alt="User avatar">
+                </div>
+            
+                <div class="create-account-div-text column is-two-thirds">
+                <h1 id="create-account-title">Create Account</h1>
+                <div class="create-account-form-wrap">
+                <form action="" method="post" id="form-create-account">
+                 
+                    <div class="field is-horizontal">
+                        <div class="field-body">
+                          <div class="field">
+                            <p class="control is-expanded has-icons-left">
+                              <input class="input input-is-small input is-rounded" type="input" placeholder="first name" name="first_name">
+                              <span class="icon is-small is-left">
+                                <i class="fas fa-user"></i>
+                              </span>
+                            </p>
+                          </div>
+                          <div class="field">
+                            <p class="control is-expanded has-icons-left">
+                              <input class="input input-is-small input is-rounded" type="input" placeholder="last name" name="last_name">
+                              <span class="icon is-small is-left">
+                                <i class="fas fa-user"></i>
+                              </span>
+                            </p>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <p class="control has-icons-left">
+                          <input class="input input-is-small input is-rounded" type="input" placeholder="screen name" name="screen_name">
+                          <span class="icon is-small is-left">
+                            <i class="fas fa-user"></i>
+                          </span>
+                        </p>
+                      </div>
+                    <div class="field">
+                        <p class="control has-icons-left">
+                          <input class="input input-is-small input is-rounded" type="email" placeholder="email" name="email">
+                          <span class="icon is-small is-left">
+                            <i class="fas fa-envelope"></i>
+                          </span>
+                        </p>
+                      </div>
+                      <div class="field">
+                        <p class="control has-icons-left">
+                            <input class="input input-is-small input is-rounded" type="password" placeholder="password" name="password">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                          </p>
+                    </div>
+                    <div class="field  is-horizontal columns create-account-buttons">
+                        <div class = "field has-text-left-desktop has-text-centered-mobile log-in-link-div column">
+                        <a  id="log-in-link" href = "#logIn">Already have an account? Log in </a>
+                        </div>
+                        <div class="field has-text-right-desktop has-text-centered-mobile column">
+                            <input type="submit" value="Create Account" class="my-button">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            </div>
+            </div>
+        </main>
+        <footer class="page-footer">
+            <p> Armoire 2020 <br>
+                Designed and Developed by Jess Brown
+            </p>  
+        </footer>
+    </div>
+</script>
+
+    <!----- LogIn  page template -------------------->
+    <script type="text/template" id="template-page-log-in">
+        <div class ="page">
+            <header class="page-header">
+                <nav id = "main-nav"></nav>
+                </header>
+                <main class="page-content login">
+                    <img class = "armoire-logo" src="/assets/logo.png" alt="Armoire Logo">
+                    <div class="log-in-div">
+                        <div class= "log-in-div-content">
+                        <h1 class="has-text-weight-bold has-text-centered is-size-4 log-in-title">login</h1>
+                        <div class="log-in-form-wrap">
+                            <form action="" method="post" id="form-log-in">
+                                <div class="field">
+                                    <p class="control has-icons-left">
+                                      <input class="input input-is-small input is-rounded" type="email" placeholder="email" name="email">
+                                      <span class="icon is-small is-left">
+                                        <i class="fas fa-envelope"></i>
+                                      </span>
+                                    </p>
+                                  </div>
+                                <div class="field">
+                                    <p class="control has-icons-left">
+                                        <input class="input my-input input-is-small input is-rounded" type="password" placeholder="password" name="password">
+                                        <span class="icon is-small is-left">
+                                            <i class="fas fa-lock"></i>
+                                        </span>
+                                      </p>
+                                </div>
+                                <div class="field  is-horizontal columns">
+                                <div class="field has-text-left-desktop has-text-centered-mobile column">
+                                    <input type="submit" value="LOGIN" class="my-button log-in-button">
+                                </div>
+                                <div class = "field has-text-right-desktop has-text-centered-mobile create-account-link-div column">
+                                <a  id="create-account-link" href = "#createAccount">Create Account</a>
+                                </div>
+                            </div>
+                            </form>
+                            
+                        </div>
+                        </div>
+                    
+                    </div>    
+            </main>
+            <img class = "armoire-log-in-graphic" src="/assets/armoirelogin.png" alt="Armoire Graphic">
+            <footer class="page-footer">
+                <p> Armoire 2020 <br>
+                    Designed and Developed by Jess Brown
+                </p>  
+            </footer>
+        </div>
+    </script>
+
+      <!-- Favourites page template -->
+      <script type="text/template" id="template-page-favourites">
+        <div class="page page-favourites">
+           <header class="page-header">
+               <nav id="main-nav"></nav>
+           </header>
+           <main class="page-content">
+               <h1> Favourites <h1>
+               <div id ='items-list'></div>
+           </main>
+       </div>
+   </script>
+
+     <!-- item entry template -->
+     <script type="text/template" id="template-item-entry">
+        <div class="content field is-horizontal columns">
+           <div class = "column has text-right">
+            <img src='{{ image }}' alt="Image of clothing item" class='item-photo'>
+           </div>
+            <div class="column has-text-left">
+                <button id="favs-btn">
+                    <span class="fav-icon">
+                        <i class="fas fa-heart"></i>
+                    </span>
+                </button>
+            <h3 class="item-entry-title"> {{ name }} <h3>
+            <button class="my-button view-item-btn">View Item</button>
+            <button class="my-button delete-btn">DELETE</button>
+            </div>
+        
+
+       </div>
+   </script> 
+
+     <!-- item modal template -->
+     <script type="text/template" id="template-item-modal">
+        <div class="item-modal">
+            <div class = "content field is-horizontal columns ">
+                <div class = "column has-text-left is-one-third">
+                    <img src='{{ image }}' alt="Image of clothing item" class='item-photo'>
+                   </div>
+                    <div class="column has-text-left modal-text">
+                    <h3 class="modal-title"> {{ name }} </h3>
+                    <p>{{ description }}</p>
+                    <button class="my-button fav-btn">Add to Favourites</button>
+                    </div>
+               </div>
+   </script> 
+
+   <!----- User Profile page template -------------------->
+<script type="text/template" id="template-page-profile">
+    <div class ="page page-user">
+        <header class="page-header">
+            <nav id = "main-nav"></nav>
+            </header>
+        <main class="page-content">
+
+            <div class="user-profile-div field  is-horizontal columns">
+                <div class = "avatar-user-profile-div column has-text-right">
+                    <img src="/assets/avatar.png" alt="User avatar">
+                </div>
+            
+                
+                <div class="user-profile-div-text column ">
+                <h1 id="create-account-title">{{ screenName }}'s Armoire </h1>
+                
+                
+                <div id="user-details">
+                <p class="user-details-label">Name:</p>
+                <p class="user-details">{{ firstName }}  {{ lastName }}</p>
+                <p class="user-details-label">Email:</p>
+                <p class="user-details">{{ email }} </p>
+                
+
+
+                <div class="field is-horizontal columns">
+                <div class="column">
+                <button id="edit-user-button" class="my-button"> EDIT </button>
+                </div>
+                <div class="column log-out-link-div">
+                <a id="log-out-link" href="#logOut"> Logout </a>
+            </div>
+            </div>
+        </div>
+        </main>
+        
+            <img id="armoire-graphic-user-page" src="/assets/armoirefull.png" alt="Armoire graphic">
+      
+        <footer class="page-footer">
+            <p> Armoire 2020 <br>
+                Designed and Developed by Jess Brown
+            </p>  
+        </footer>
+    </div>
+
+<div class="hidden" >
+    
+    <form action="" method="post" id="update-user-form">
+        <div class="field is-horizontal">
+            <div class="field-body">
+              <div class="field">
+                <p class="control is-expanded has-icons-left">
+                  <input class="input input-is-small input is-rounded" type="input" placeholder="{{ firstName }}" name="first_name">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-user"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="field">
+                <p class="control is-expanded has-icons-left">
+                  <input class="input input-is-small input is-rounded" type="input" placeholder="{{ lastName }}" name="last_name">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-user"></i>
+                  </span>
+                </p>
+              </div>
+            </div>
+        </div>
+        <div class="field">
+            <p class="control has-icons-left">
+              <input class="input input-is-small input is-rounded" type="input" placeholder="{{ screenName }} " name="screen_name">
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+            </p>
+          </div>
+        <div class="field">
+            <p class="control has-icons-left">
+              <input class="input input-is-small input is-rounded" type="email" placeholder="{{ email }}" name="email">
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+            </p>
+          </div>
+          <div class="field is-horizontal columns">
+            <div class="column" id="submit-button-div">
+                <input type="submit" value="SUBMIT" class="my-button" id="submit-button">
+            </div>
+            <div class="column has-text-right">
+                <button id="cancel-button" class="my-button"> Cancel </button>
+        </div>
+       
+        
+    </form>
+</div>
+   
+
+
+    
+</div>
+</script>
+
+
+
+    <!-- 404 page template -->
+    <script type="text/template" id="template-page-404">
+        <div class="page page-home">
+            <header class="page-header">
+                <nav id="main-nav"></nav>
+            </header>
+            <main class="page-content">
+                <h1> 404 Page not found<h1>
+                <p> Sorry! </p>
+            </main>
+        </div>
+    </script>
+
+    <!-- add item form -->
+    <script type="text/template" id="template-page-add-item-form">
+    <form action="" method="post" id="form-add-item">
+        <div class="field is-horizontal">
+            <div class="field-body">
+              <div class="field">
+                <p class="control is-expanded has-icons-left">
+                  <input class="input input-is-small input is-rounded" type="input" placeholder="first name" name="first_name">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-user"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="field">
+                <p class="control is-expanded has-icons-left">
+                  <input class="input input-is-small input is-rounded" type="input" placeholder="last name" name="last_name">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-user"></i>
+                  </span>
+                </p>
+              </div>
+            </div>
+        </div>
+        <div class="field">
+            <p class="control has-icons-left">
+              <input class="input input-is-small input is-rounded" type="input" placeholder="screen name" name="screen_name">
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+            </p>
+          </div>
+        <div class="field">
+            <p class="control has-icons-left">
+              <input class="input input-is-small input is-rounded" type="email" placeholder="email" name="email">
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+            </p>
+          </div>
+          <div class="field">
+            <p class="control has-icons-left">
+                <input class="input input-is-small input is-rounded" type="password" placeholder="password" name="password">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                </span>
+              </p>
+        </div>
+        <div class="field  is-horizontal columns create-account-buttons">
+            <div class = "field has-text-left-desktop has-text-centered-mobile log-in-link-div column">
+            <a  id="log-in-link" href = "#logIn">Already have an account? Log in </a>
+            </div>
+            <div class="field has-text-right-desktop has-text-centered-mobile column">
+                <input type="submit" value="Create Account" class="my-button">
+            </div>
+        </div>
+    </form>
+</script>
+
+
+
+
+</body>
+</html>
